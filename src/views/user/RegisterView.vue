@@ -19,7 +19,6 @@ import { postData } from '../../api';
                 dateofbirth:dateofbirth.value,
                 password:password.value,
             }) 
-            console.log(result.status)
             router.push('/login')
         }
         else 

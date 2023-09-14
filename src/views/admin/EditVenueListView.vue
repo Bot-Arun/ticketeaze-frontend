@@ -4,7 +4,6 @@
     let venues = ref([]);
     onMounted(async()=>{
         venues.value = (await getData('/venue/all')).data;
-        console.log(venues.value)
     })
 </script>
 

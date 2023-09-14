@@ -6,7 +6,6 @@
 
     onMounted( async() => {
         tickets.value = (await getData ('/myorders')).bookings; 
-        console.log(tickets.value)
     })
 
 </script>

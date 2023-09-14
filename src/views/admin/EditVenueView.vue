@@ -1,7 +1,7 @@
 <script setup>
   import { onMounted, ref } from 'vue';
   import { getData ,postData } from '../../api';
-  import { useRoute } from 'vue-router';
+  import { useRoute ,useRouter} from 'vue-router';
   let route = useRoute();
   let  venue = ref({
     id:0,
@@ -11,10 +11,38 @@
     pincode:'',
     capacity:0,
   });
-  onMounted(async()=>{
-      venue.value = (await getData('/venue/'+route.params.id)).data
-  })
-</script>
+
+  let imageInputRef = ref(null);
+  const router = useRouter();
+  async function editVenue() {
+    const formData = new FormData();
+    formData.append('venue_img', imageInputRef.value.files[0]);
+    formData.append('venue_name', venue.value.name);
+    formData.append('venue_type', venue.value.venuetype);
+    formData.append('venue_capacity', venue.value.capacity);
+    formData.append('venue_location', venue.value.city);
+    formData.append('venue_pincode', venue.value.pincode);
+    const data = await postData('/edit/venue/'+route.params.id, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      if (data.status > 200) {
+        alert(data.message);
+      } else {
+        router.push('/admin/home');
+      }
+    }
+    
+    function handleImageUpload(event) {
+      imageInputRef.value = event.target;
+    }
+    onMounted(async()=>{
+        venue.value = (await getData('/venue/'+route.params.id)).data
+        console.table(venue.value)
+    })
+  </script>
 
 <template>
       <section class="p-5 bg-white" >
@@ -68,7 +96,7 @@
                           <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
                             <label class="form-label" for="form3Example3c">Venue Photo</label>
-                            <input type="file" name="venue_img" class="form-control" />
+                            <input ref="imageInputRef" type="file" name="venue_img" class="form-control" required @change="handleImageUpload" />
                           </div>
                         </div>
 
@@ -79,11 +107,9 @@
                             <input type="number" name="venue_capacity" class="form-control" placeholder="Venue Capacity" v-model="venue.capacity" />
                           </div>
                         </div>
-
-                        <input type="hidden" name="venue_id" class="form-control" v-model="venue.id" required/>
       
                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                          <button type="submit" class="btn btn-success btn-md register-btn">Edit Venue</button>
+                          <button @click="editVenue()" type="submit" class="btn btn-success btn-md register-btn">Edit Venue</button>
                         </div>
                     </div>     
                   </div>

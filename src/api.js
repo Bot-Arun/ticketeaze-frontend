@@ -26,7 +26,6 @@ export const getData = (endpoint) => {
     })
     .catch(error => {
       if(error.response) {
-        console.log('caught error')
         console.error(error);
         return {...error.response.data,'status':error.response.status}
       }

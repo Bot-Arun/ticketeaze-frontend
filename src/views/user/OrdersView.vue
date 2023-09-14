@@ -5,7 +5,6 @@ import { baseURL, getData } from '../../api';
 let bookings = ref({});
 onMounted( async()=> {
     bookings.value = (await getData ('/myorders')).events; 
-    console.log(bookings.value)
 
 })
 

@@ -23,7 +23,7 @@ const token = localStorage.getItem('token') ;
 if (token) {
   const jwt =  jwt_decode(token) ;
   store.admin = jwt.is_admin ;
-  name.value = jwt.name;
+  store.name = jwt.name;
   if (Date.now() < jwt.exp * 1000) {
     store.logedIn = true;
   }
@@ -74,7 +74,7 @@ if (token) {
                         Profile</button>
 
               <ul class="dropdown-menu ">
-                  <li class="dropdown-item"><b>Hi !</b></li>
+                  <li class="dropdown-item"><b>Hi ! {{ store.name }}</b></li>
                   <li><RouterLink class="dropdown-item" to="/myorders">My Orders</RouterLink></li>
                   <li><a class="dropdown-divider" href="#"></a></li>
                   <li><a class="dropdown-item" @click="logout('/login')"  href="#">Logout</a></li>
@@ -127,7 +127,7 @@ if (token) {
         
         <div v-if="store.logedIn" >
 
-            <li class="pt-2 nav-item d-none d-lg-block">Hello,{{ name }} !</li>
+            <li class="pt-2 nav-item d-none d-lg-block">Hello,{{ store.name }} !</li>
             <li class="list-unstyled mx-3 d-lg-block  d-none">
                 <button type="button" class="btn btn-secondary" @click="logout('/admin/login')">Log Out</button>
             </li>

@@ -13,7 +13,6 @@
         email:email.value,
         password:pass.value,
       }) 
-      console.log(data,'mine')
       if(data.status >200 ) {
         alert(data.message);
         return;

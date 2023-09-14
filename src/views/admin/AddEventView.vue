@@ -71,8 +71,8 @@
                             <select v-model="eventType" class="dropdown rounded-3 p-1" name="event_type" id="event_type">
                               <option value="--select--"> --Select--</option>
                               <option value="Movie">Movie</option>
-                              <option value="Comedy Shows">Comedy Shows</option>
-                              <option value="Music Concerts">Music Concerts</option>
+                              <option value="Comedy Show">Comedy Show</option>
+                              <option value="Music Concert">Music Concert</option>
                             </select>
                           </div>
                         </div>
@@ -89,7 +89,7 @@
                           <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
                             <label class="form-label" for="form3Example3c">Short Description</label>
-                            <textarea v="shortDesc" type="textarea" name="event_short_desc" class="form-control" placeholder="Event Description in 20 Letters" required></textarea>
+                            <textarea v-model="shortDesc" type="textarea" name="event_short_desc" class="form-control" placeholder="Event Description in 20 Letters" required></textarea>
                           </div>
                         </div>
                         <div class="d-flex flex-row align-items-center mb-4">

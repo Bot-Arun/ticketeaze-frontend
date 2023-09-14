@@ -4,7 +4,6 @@
   let events = ref([]);
   onMounted(async()=>{
     events.value = (await getData('/event/all')).data;
-    console.log(events.value)
   })
 </script>
 
