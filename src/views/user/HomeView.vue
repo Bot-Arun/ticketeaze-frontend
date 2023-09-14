@@ -13,10 +13,6 @@ import { getData ,baseURL } from '../../api';
 
 <template>
 <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
-  <div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert">
-    slkfalksd jflkasdj flkasdj flkasdjflk 
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
 </div>
 <section class="w-100  bg-white p-5">
   <div id="carouselExampleCaptions" class="carousel slide w-75 m-auto">

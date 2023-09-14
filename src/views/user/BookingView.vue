@@ -59,9 +59,7 @@
                             </div>
                     </div>
 
-                    <div class="alert-msg d-flex justify-content-center">
-                        <div class="alert alert-danger w-75 text-center p-1 d-none" id="alert-msg">!! You Can't Buy More than 10 Tickets in a Booking !!</div>
-                    </div>
+                   
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                       <button @click="bookTickets()" class="btn btn-md btn-success register-btn" :class="{'disabled':count ==  0}" id="book-button">Book Tickets</button>
                       <input type="hidden" name="ticketcount" id="ticketcount" value="5">
